@@ -58,7 +58,7 @@ export async function checkRequiredFilesInPR(context: Context<"pull_request">) {
         owner,
         repo,
         path: file,
-        ref: pr.base.ref, // 베이스 브랜치(보통 main)에서 확인
+        ref: pr.head.ref, // PR을 생성한 브랜치(head 브랜치)에서 확인
       });
 
       // 파일이 존재하면 existingFiles에 추가
