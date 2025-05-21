@@ -16,9 +16,10 @@ const middleware = createNodeMiddleware(appFunction, {
       WEBHOOK_SECRET: process.env.WEBHOOK_SECRET,
     },
   }),
+  webhooksPath: "/api/github/webhooks",
 });
 
-server.use("/api/github", (req, res, next) => {
+server.use((req, res, next) => {
   middleware(req, res, next).catch(next);
 });
 
