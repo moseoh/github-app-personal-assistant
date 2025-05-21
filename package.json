@@ -1,5 +1,5 @@
 {
-  "name": "github-app-personal-assistant",
+  "name": "personal-assistant-github-app",
   "version": "1.0.0",
   "private": true,
   "description": "A GitHub App that automates personal repository tasks like issue management and pull request labeling.",
