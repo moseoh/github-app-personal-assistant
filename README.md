@@ -31,3 +31,8 @@ For more, check out the [Contributing Guide](CONTRIBUTING.md).
 ## License
 
 [ISC](LICENSE) © 2025 moseoh
+
+```bash
+./.repo/init-owner.sh
+./.repo/init.sh
+```
