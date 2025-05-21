@@ -1,4 +1,5 @@
 import { Probot } from "probot";
+import { checkRequiredFilesInPR } from "./checks/repo-init-check.js";
 
 export default (app: Probot) => {
   app.on("issues.opened", async (context) => {
@@ -7,9 +8,16 @@ export default (app: Probot) => {
     });
     await context.octokit.issues.createComment(issueComment);
   });
-  // For more information on building apps:
-  // https://probot.github.io/docs/
 
-  // To get your app running against GitHub, see:
-  // https://probot.github.io/docs/development/
+  app.on(
+    [
+      "pull_request.opened",
+      "pull_request.reopened",
+      "pull_request.synchronize",
+    ],
+    async (context) => {
+      // PR 파일 검사 실행
+      await checkRequiredFilesInPR(context);
+    }
+  );
 };
