@@ -1,7 +1,17 @@
 import { Probot } from "probot";
+import { Router } from "express";
+import { createHealthRouter } from "./health.js";
 import { checkRequiredFilesInPR } from "./checks/repo-init-check.js";
 
-export default (app: Probot) => {
+type ProbotOptions = {
+  getRouter: (path?: string) => Router;
+};
+
+export default (app: Probot, { getRouter }: ProbotOptions) => {
+  // Health Check 라우터 설정
+  const router = getRouter("/api");
+  router.use("/health", createHealthRouter());
+
   app.on("issues.opened", async (context) => {
     const issueComment = context.issue({
       body: "Thanks for opening this issue!",
